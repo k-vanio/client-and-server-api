@@ -1,0 +1,4 @@
+- server max timeout 200ms
+- banco de dados 10 ms
+
+- client max timeout 300ms

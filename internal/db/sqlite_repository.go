@@ -15,7 +15,7 @@ type SqliteRepository struct {
 
 func (sr *SqliteRepository) Save(quote dto.Quote) error {
 	// context
-	ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*200)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*20)
 	defer cancel()
 
 	insert := &model.Quote{

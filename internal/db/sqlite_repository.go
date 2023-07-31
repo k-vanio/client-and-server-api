@@ -14,7 +14,13 @@ type SqliteRepository struct {
 }
 
 func (sr *SqliteRepository) Save(quote dto.Quote) error {
-	// context
+
+	/*
+		É importante ressaltar que o banco de dados está localmente integrado à aplicação,
+		o que garante um tempo mínimo para a gravação e persistência dos dados.
+		Para obter um erro, é necessário definir o tempo limite do contexto para um valor adequado,
+		como: context.WithTimeout(context.Background(), time.Nanosecond*3)
+	*/
 	ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*20)
 	defer cancel()
 

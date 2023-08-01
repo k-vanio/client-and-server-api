@@ -2,6 +2,7 @@ package db
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/x-vanio/client-and-server-api/internal/model"
@@ -21,7 +22,7 @@ func (sr *SqliteRepository) Save(quote dto.Quote) error {
 		Para obter um erro, é necessário definir o tempo limite do contexto para um valor adequado,
 		como: context.WithTimeout(context.Background(), time.Nanosecond*3)
 	*/
-	ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*20)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Nanosecond*7)
 	defer cancel()
 
 	insert := &model.Quote{
@@ -39,6 +40,7 @@ func (sr *SqliteRepository) Save(quote dto.Quote) error {
 	}
 
 	if err := sr.DB.WithContext(ctx).Create(insert).Error; err != nil {
+		fmt.Println(`DB insert err`, err.Error())
 		return err
 	}
 
